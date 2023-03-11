@@ -1,0 +1,36 @@
+baseURL = 'https://nicolasfarabegoli.it/slides-template/'
+languageCode = 'en-us'
+title = 'Slide template'
+disableKinds = ["sitemap", "RSS"]
+theme = "reveal-hugo"
+
+[author]
+name = "Nicolas Farabegoli"
+
+[params.reveal_hugo]
+theme = "white"
+custom_theme = "custom-theme.scss"
+custom_theme_compile = true
+slide_number = true
+pdfSeparateFragments = false
+highlight_theme = "github-gist"
+width = "1440"
+height = "900"
+
+[params.reveal_hugo.custom_theme_options]
+targetPath = "css/custom-theme.css"
+enableSourceMap = true
+
+[markup.highlight]
+codeFences = false
+
+[outputFormats.Reveal]
+baseName = "index"
+mediaType = "text/html"
+isHTML = true
+
+[[params.reveal_hugo.mermaid]]
+startOnLoad = false
+theme = "default"
+fontFamily = "Inconsolata"
+useMaxWidth = false

@@ -1,0 +1,142 @@
+@import "reveal-js/css/theme/template/mixins";
+@import "reveal-js/css/theme/template/settings";
+
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans');
+
+// Monospace fonts
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata');
+
+$backgroundColor: #fff;
+
+$mainColor: #000;
+$headingColor: #111;
+
+$mainFontSize: 2em;
+$mainFont: 'Lato', 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Lato', 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
+$headingLetterSpacing: normal;
+$headingFontWeight: 600;
+$linkColor: #0477b9;
+$linkColorHover: lighten($linkColor, 25%);
+$selectionBackgroundColor: lighten($linkColor, 25%);
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+@import "reveal-js/css/theme/template/theme";
+
+section.has-light-background {
+
+	&,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: #222;
+	}
+}
+
+.reveal strong,
+.reveal b {
+	font-weight: bold;
+	color: #9f0000
+}
+
+.reveal em {
+	font-style: italic;
+	color: #006900
+}
+
+.multiCol {
+	display: table;
+	table-layout: fixed; // don't fudge depending on content
+	width: 100%;
+	text-align: left; // matter of taste, makes imho sense
+
+	.col {
+		display: table-cell;
+		vertical-align: top;
+		width: 50%;
+		margin: auto;
+		padding: 2% 0 5% 5%; // some vertical, and between columns
+
+		&:first-of-type {
+			padding-left: 0;
+		}
+
+		// there's nothing before col1
+	}
+}
+
+.reveal section img {
+	border: 0em;
+	box-shadow: none;
+	max-width: 100%;
+	max-height: 23em;
+	height: auto;
+	object-fit: contain;
+}
+
+.reveal section img {
+	border: 0em;
+	box-shadow: none;
+}
+
+.mermaid svg {
+	max-width: 100% !important;
+	max-height: 43vh !important;
+	height: 20%;
+	width: 100vw;
+	transition: transform 0.3s ease;
+	border-width: 0.1em;
+	border-style: none;
+}
+
+.reveal pre {
+	border-radius: .65em;
+	padding-left: .25em;
+	padding-right: .25em;
+}
+
+.reveal pre code {
+	max-width: 100%;
+	line-height: 140%;
+	font-size: 1em;
+	color: black;
+	max-height: none;
+	font-family: 'Jetbrains Mono', 'Inconsolata', 'Source Code Pro', monospace;
+	font-weight: normal;
+	margin: .1em;
+	// line-height: 1.2em;
+	// font-size: 1.5em;
+	// font-weight: normal;
+	padding-left: .3vw;
+	padding-right: .3vw;
+	padding-top: .25vw;
+	padding-bottom: .25vw;
+	// border: #000000AA;
+	// border-style: solid;
+	// border-width: .1vw;
+	// border-radius: .50vw;
+	// box-sizing: border-box;
+}
+
+.hljs {
+	box-shadow: 0 0 3em 0.6em rgba(255, 255, 255, 0.2);
+}
+
+.mermaid svg {
+	max-width: 100% !important;
+	max-height: 43vh !important;
+	height: 20%;
+	width: 100vw;
+	transition: transform 0.3s ease;
+	border-width: 0.1em;
+	border-style: none;
+}

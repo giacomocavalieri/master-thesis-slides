@@ -1,0 +1,51 @@
+name: Build and deploy slides
+
+on:
+  push:
+    branches: ['main', 'master']
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3.1.0
+        with:
+          submodules: true
+
+      - name: Setup hugo version
+        id: hugo
+        run: |
+          # Idea: the regex matcher of Renovate keeps this string up to date automatically
+          # The version is extracted and used to access the correct version of the scripts
+          USES=$(cat <<TRICK_RENOVATE
+          - uses: gohugoio/hugo@v0.107.0
+          TRICK_RENOVATE
+          )
+          echo "Scripts update line: \"$USES\""
+          echo "Computed version: \"${USES#*@v}\""
+          echo "::set-output name=version::${USES#*@v}"
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.6.0
+        with:
+          hugo-version: ${{ steps.hugo.outputs.version }}
+          extended: true
+
+      - name: Build slides
+        run: hugo --minify
+
+      - name: Transform and Inline Mermaid charts
+        uses: cric96/inline-mermaid@v1.8.1
+        with:
+          root-folder: public
+          config-file: config.toml
+          css-file-regex: css\\/custom-theme.*.css$
+
+      - name: Deploy website
+        if: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') }}
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: public
