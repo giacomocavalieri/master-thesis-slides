@@ -1,0 +1,780 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --base-h: 212;
+  --base-s: 15%;
+  --base-d: 13%;
+  --base-l: 97%;
+  --accent-h: 215;
+  --accent-s: 75%;
+  --accent-d: 70%;
+  --accent-l: 60%;
+
+  --blue: #2e80f2;
+  --pink: #ff82b2;
+  --green: #3eb4bf;
+  --yellow: #e5b567;
+  --orange: #e87d3e;
+  --red: #e83e3e;
+  --purple: #9e86c8;
+
+  --light-yellow-highlighter: #fff3a3a6;
+  --dark-yellow-highlighter: #dbce7e77;
+  --pink-highlighter: #ffb8eba6;
+  --red-highlighter: #db3e606e;
+  --blue-highlighter: #adccffa6;
+  --dark-blue-highlighter: #adccff5b;
+  --green-highlighter: #bbfabba6;
+  --purple-highlighter: #d2b3ffa6;
+  --orange-highlighter: #ffb86ca6;
+  --grey-highlighter: #cacfd9a6;
+
+  /* Colors, sizes, weights, padding */
+  --h1-color: var(--text-normal);
+  --h2-color: var(--blue);
+  --h3-color: var(--blue);
+  --h4-color: var(--yellow);
+  --h5-color: var(--red);
+  --h6-color: var(--text-muted);
+
+  --strong-color: var(--pink);
+  --em-color: var(--pink);
+
+  --font-normal: 16px;
+  --font-small: 13px;
+  --font-smaller: 11px;
+  --font-smallest: 10px;
+
+  --font-settings: 15px;
+  --font-settings-small: 13px;
+  --font-inputs: 14px;
+
+  --h1: 1.5em;
+  --h2: 1.3em;
+  --h3: 1.1em;
+  --h4: 0.9em;
+  --h5: 0.85em;
+  --h6: 0.85em;
+
+  --h1-weight: 700;
+  --h2-weight: 700;
+  --h3-weight: 600;
+  --h4-weight: 500;
+  --h5-weight: 500;
+  --h6-weight: 400;
+
+  --normal-weight: 400;
+  --bold-weight: 700;
+  --icon-muted: 0.4;
+  --line-width: 45rem;
+  --line-height: 1.5;
+  --border-width: 1px;
+  --border-width-alt: 1px;
+  --max-width: 90%;
+  --nested-padding: 3.5%;
+  --input-height: 36px;
+  --list-indent: 2em;
+
+  --font-todoist-title-size: 1em;
+  --font-todoist-metadata-size: small;
+
+  --cursor: default;
+  --h4-transform: uppercase;
+
+  --font-text-theme: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, Ubuntu, sans-serif;
+  --font-monospace-theme: 'Fira Code', Menlo, SFMono-Regular, Consolas, 'Roboto Mono', monospace;
+
+  --text-normal: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 80%));
+  --text-muted: hsl(var(--base-h), calc(var(--base-s) - 5%), calc(var(--base-l) - 45%));
+  --text-faint: hsl(var(--base-h), calc(var(--base-s) - 5%), calc(var(--base-l) - 25%));
+  --text-accent: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+  --text-accent-hover: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 10%));
+  --text-on-accent: white;
+  --text-selection: hsla(var(--accent-h), 50%, calc(var(--base-l) - 20%), 30%);
+  --text-highlight-bg: var(--light-yellow-highlighter);
+  --text-highlight-bg-active: rgba(0, 0, 0, 0.1);
+
+  --background-primary: white;
+  --background-primary-alt: hsl(var(--base-h), var(--base-s), var(--base-l));
+  --background-secondary: hsl(var(--base-h), var(--base-s), var(--base-l));
+  --background-secondary-alt: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 2%));
+  --background-tertiary: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 7%));
+
+  --background-match-highlight: hsla(var(--accent-h), 40%, 62%, 0.2);
+  --background-modifier-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 10%));
+
+  --interactive-accent: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) + 10%));
+  --interactive-accent-hover: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 0%));
+
+  --interactive-accent-rgb: 220, 220, 220;
+
+  --quote-opening-modifier: hsl(var(--base-h), var(--base-s), calc(var(--base-l) - 10%));
+  --background-modifier-cover: hsla(var(--base-h), var(--base-s), calc(var(--base-l) - 5%), 0.7);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  --code-color-l: #5c5c5c;
+  --code-color: var(--code-color-l);
+  --atom-gray-1: #383a42;
+  --atom-gray-2: #383a42;
+  --atom-red: #e75545;
+  --atom-green: #4ea24c;
+  --atom-blue: #3d74f6;
+  --atom-purple: #a625a4;
+  --atom-aqua: #0084bc;
+  --atom-yellow: #e35649;
+  --atom-orange: #986800;
+}
+
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+
+body {
+  background: #fff;
+  background-color: #fff;
+}
+
+::selection {
+  color: #fff;
+  background: var(--pink);
+  text-shadow: none;
+}
+
+.reveal {
+  font-size: 1.4rem;
+  font-weight: var(--normal-weight);
+  font-family: var(--font-text-theme);
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  text-shadow: none;
+  word-wrap: break-word;
+}
+
+.reveal h1 {
+  font-size: 3rem;
+}
+
+.reveal h2 {
+  font-size: 2rem;
+  color: var(--h3-color);
+}
+
+.reveal h3 {
+  font-size: 2rem;
+  color: var(--h3-color);
+}
+
+.reveal p {
+  line-height: 1.3;
+  color: var(--text-normal);
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+/* Ensure certain elements are never larger than the slide itself */
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.reveal strong,
+.reveal b {
+  font-weight: bold;
+  color: var(--strong-color);
+}
+
+.reveal em {
+  font-style: italic;
+  color: var(--em-color);
+}
+
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  display: inline-block;
+  text-align: left;
+  margin: 0;
+  margin-top: 1.3rem;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.reveal ul li {
+  line-height: 1.5rem;
+}
+
+.reveal p+ul {
+  margin-top: 0.5rem;
+}
+
+.reveal ol {
+  list-style-type: decimal;
+}
+
+.reveal ul {
+  list-style-type: disc;
+}
+
+.reveal ul ul {
+  list-style-type: square;
+}
+
+.reveal ul ul ul {
+  list-style-type: circle;
+}
+
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ol,
+.reveal ol ul {
+  display: block;
+  margin-left: 40px;
+}
+
+.reveal dt {
+  font-weight: bold;
+}
+
+.reveal dd {
+  margin-left: 40px;
+}
+
+
+.reveal blockquote:before {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  display: block;
+  content: "\201C";
+  font-size: 5rem;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: var(--code-color);
+}
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: 75%;
+  margin: 10px auto;
+  padding: 5px 20px;
+  font-style: italic;
+  background: var(--background-secondary);
+}
+
+.reveal blockquote p {
+  color: var(--code-color) !important;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.reveal blockquote p:first-child,
+.reveal blockquote p:last-child {
+  display: inline-block;
+}
+
+.reveal q {
+  font-style: italic;
+}
+
+.reveal pre {
+  display: block;
+  position: relative;
+  width: 90%;
+  margin: 20px auto;
+  text-align: left;
+  line-height: 1em;
+  word-wrap: break-word;
+}
+
+.reveal code {
+  font-size: 1rem;
+  font-family: 'Fira Code', monospace;
+  text-transform: none;
+  color: var(--code-color);
+  background-color: var(--background-secondary);
+}
+
+.reveal pre code {
+  display: block;
+  padding: 15px;
+  overflow: auto;
+  word-wrap: normal;
+}
+
+.reveal table {
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.reveal table th {
+  font-weight: bold;
+}
+
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-bottom: 1px solid;
+}
+
+.reveal table th[align="center"],
+.reveal table td[align="center"] {
+  text-align: center;
+}
+
+.reveal table th[align="right"],
+.reveal table td[align="right"] {
+  text-align: right;
+}
+
+.reveal table tbody tr:last-child th,
+.reveal table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.reveal sup {
+  vertical-align: super;
+  font-size: 0.9rem;
+}
+
+.reveal h2>sup {
+  vertical-align: super;
+  font-size: 1rem;
+}
+
+.reveal sub {
+  vertical-align: sub;
+}
+
+.reveal small {
+  display: inline-block;
+  font-size: 0.6em;
+  line-height: 1.2em;
+  vertical-align: top;
+}
+
+.reveal small * {
+  vertical-align: top;
+}
+
+/*********************************************
+ * LINKS
+ *********************************************/
+.reveal a {
+  color: var(--text-accent);
+  text-decoration: none;
+  -webkit-transition: color .15s ease;
+  -moz-transition: color .15s ease;
+  transition: color .15s ease;
+}
+
+.reveal a:hover {
+  color: var(--text-accent-hover);
+  text-shadow: none;
+  border: none;
+}
+
+/*********************************************
+ * IMAGES
+ *********************************************/
+.reveal section img {
+  margin: 15px 0px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #363636;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.reveal section img.plain {
+  border: 0;
+  box-shadow: none;
+}
+
+.reveal a img {
+  -webkit-transition: all .15s linear;
+  -moz-transition: all .15s linear;
+  transition: all .15s linear;
+}
+
+.reveal a:hover img {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #FF4081;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+}
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls {
+  color: var(--pink);
+}
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  background: var(--pink-highlighter);
+  color: var(--pink);
+}
+
+.reveal .progress span {
+  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+
+/*------------*/
+/* CODE STYLE */
+/*------------*/
+
+/* Background */
+.bg {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+
+/* PreWrapper */
+.chroma {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+
+/* Error */
+.chroma .err {
+  color: #960050;
+  background-color: #1e0010
+}
+
+/* LineTableTD */
+.chroma .lntd {
+  vertical-align: top;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+/* LineTable */
+.chroma .lntable {
+  border-spacing: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+/* LineHighlight */
+.chroma .hl {
+  background-color: #ffffcc
+}
+
+/* LineNumbersTable */
+.chroma .lnt {
+  white-space: pre;
+  user-select: none;
+  margin-right: 0.4em;
+  padding: 0 0.4em 0 0.4em;
+  color: #7f7f7f
+}
+
+/* LineNumbers */
+.chroma .ln {
+  white-space: pre;
+  user-select: none;
+  margin-right: 0.4em;
+  padding: 0 0.4em 0 0.4em;
+  color: #7f7f7f
+}
+
+/* Line */
+.chroma .line {
+  display: flex;
+}
+
+/* Keyword */
+.chroma .k {
+  color: #a625a4
+}
+
+/* KeywordConstant */
+.chroma .kc {
+  color: #a625a4
+}
+
+/* KeywordDeclaration */
+.chroma .kd {
+  color: #a625a4
+}
+
+/* KeywordNamespace */
+.chroma .kn {
+  color: #f92672
+}
+
+/* KeywordPseudo */
+.chroma .kp {
+  color: #a625a4
+}
+
+/* KeywordReserved */
+.chroma .kr {
+  color: #a625a4
+}
+
+/* KeywordType */
+.chroma .kt {
+  color: #e75545
+}
+
+/* NameAttribute */
+.chroma .na {
+  color: var(--code-color);
+  font-weight: bold;
+}
+
+/* NameClass */
+.chroma .nc {
+  color: var(--code-color);
+  font-weight: bold;
+}
+
+/* NameConstant */
+.chroma .no {
+  color: #66d9ef
+}
+
+/* NameDecorator */
+.chroma .nd {
+  color: var(--code-color);
+  font-weight: bold;
+}
+
+/* NameException */
+.chroma .ne {
+  color: var(--code-color);
+  font-weight: bold;
+}
+
+/* NameFunction */
+.chroma .nf {
+  color: var(--code-color);
+  font-weight: bold;
+}
+
+/* NameOther */
+.chroma .nx {
+  color: var(--code-color);
+  font-weight: bold;
+}
+
+/* NameTag */
+.chroma .nt {
+  color: var(--code-color);
+}
+
+/* Literal */
+.chroma .l {
+  color: #ae81ff
+}
+
+/* LiteralDate */
+.chroma .ld {
+  color: #4ea24c
+}
+
+/* LiteralString */
+.chroma .s {
+  color: #4ea24c
+}
+
+/* LiteralStringAffix */
+.chroma .sa {
+  color: #4ea24c
+}
+
+/* LiteralStringBacktick */
+.chroma .sb {
+  color: #4ea24c
+}
+
+/* LiteralStringChar */
+.chroma .sc {
+  color: #4ea24c
+}
+
+/* LiteralStringDelimiter */
+.chroma .dl {
+  color: #4ea24c
+}
+
+/* LiteralStringDoc */
+.chroma .sd {
+  color: #4ea24c
+}
+
+/* LiteralStringDouble */
+.chroma .s2 {
+  color: #4ea24c
+}
+
+/* LiteralStringEscape */
+.chroma .se {
+  color: #ae81ff
+}
+
+/* LiteralStringHeredoc */
+.chroma .sh {
+  color: #4ea24c
+}
+
+/* LiteralStringInterpol */
+.chroma .si {
+  color: #4ea24c
+}
+
+/* LiteralStringOther */
+.chroma .sx {
+  color: #4ea24c
+}
+
+/* LiteralStringRegex */
+.chroma .sr {
+  color: #4ea24c
+}
+
+/* LiteralStringSingle */
+.chroma .s1 {
+  color: #4ea24c
+}
+
+/* LiteralStringSymbol */
+.chroma .ss {
+  color: #4ea24c
+}
+
+/* LiteralNumber */
+.chroma .m {
+  color: #986800
+}
+
+/* LiteralNumberBin */
+.chroma .mb {
+  color: #986800
+}
+
+/* LiteralNumberFloat */
+.chroma .mf {
+  color: #986800
+}
+
+/* LiteralNumberHex */
+.chroma .mh {
+  color: #986800
+}
+
+/* LiteralNumberInteger */
+.chroma .mi {
+  color: #986800
+}
+
+/* LiteralNumberIntegerLong */
+.chroma .il {
+  color: #986800
+}
+
+/* LiteralNumberOct */
+.chroma .mo {
+  color: #986800
+}
+
+/* Operator */
+.chroma .o {
+  color: var(--code-color);
+}
+
+/* OperatorWord */
+.chroma .ow {
+  color: var(--code-color);
+}
+
+.chroma .n {
+  color: var(--h2-color);
+}
+
+/* Comment */
+.chroma .c {
+  color: #989898
+}
+
+/* CommentHashbang */
+.chroma .ch {
+  color: #989898
+}
+
+/* CommentMultiline */
+.chroma .cm {
+  color: #989898
+}
+
+/* CommentSingle */
+.chroma .c1 {
+  color: #989898
+}
+
+/* CommentSpecial */
+.chroma .cs {
+  color: #989898
+}
+
+/* CommentPreproc */
+.chroma .cp {
+  color: #989898
+}
+
+/* CommentPreprocFile */
+.chroma .cpf {
+  color: #989898
+}
+
+/* GenericDeleted */
+.chroma .gd {
+  color: #f92672
+}
+
+/* GenericEmph */
+.chroma .ge {
+  font-style: italic
+}
+
+/* GenericInserted */
+.chroma .gi {
+  color: #a6e22e
+}
+
+/* GenericStrong */
+.chroma .gs {
+  font-weight: bold
+}
+
+/* GenericSubheading */
+.chroma .gu {
+  color: #989898
+}
