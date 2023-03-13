@@ -52,13 +52,21 @@ g(x) + g(x) === 2 * g(x)
 
 ---
 
-## Modellazione dei side effect tramite monadi
+## Obiettivi della tesi
 
-Il design pattern delle monadi consiste nel trasformare il programma in una struttura dati immutabile che __descrive__ i side effect che possono verificarsi:
+- Fornire una visione d'insieme sulle principali tecniche ad oggi adottate per modellare in maniera esplicita i side effect delle funzioni: _Monad Transformer Library (MTL)_ e _free monad_
+- Analizzare il nuovo approccio emergente degli _effetti algebrici_
+- Mostrare l'efficacia di questi approcci come strumenti di design in un paradigma _"orientato agli effetti"_
 
-- Un programma diventa __un'entità di prima classe__
-- I programmi possono essere descritti e composti in maniera __modulare__
-- È possibile __modificare la semantica__ di un programma interpretandolo diversamente
+---
+
+## Modellazione esplicita dei side effect
+
+L'idea alla base di questi approcci consiste nel trasformare il programma in una struttura dati immutabile che _descrive_ i side effect che possono verificarsi:
+
+- Un programma diventa _un'entità di prima classe_
+- I programmi possono essere descritti e composti in maniera _modulare_
+- È possibile _modificare la semantica_ di un programma interpretandolo diversamente
 
 ---
 
@@ -80,26 +88,9 @@ def f[M[_]: FileSystem: Console: Monad](x: Double): M[Double] = for
 
 ---
 
-<section data-noprocess data-auto-animate>
-  <h2>Effect System</h2>
-  <p>L'approccio monadico permette di imporre un effect system </p>
-  <ul>
-    <li>Permette di individuare esattamente quali side effect può avere una funzione</li>
-    <li>Permette di capire quali funzioni sono pure e quali no</li>
-    <li>Impedisce di mescolare inavvertitamente codice puro e con side effect</li>
-  </ul>
+# Killer feature: concorrenza strutturata
 
-  <div class="outer-circle">
-    Imperative shell
-    <div class="inner-circle">Functional core</div>
-  </div>
-</section>
-
----
-
-<!--
-
-{{< slide transition="none" >}}
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
 
 ```scala
 def computation() =
@@ -112,6 +103,10 @@ def computation() =
 ---
 
 {{< slide transition="none" >}}
+
+# Killer feature: concorrenza strutturata
+
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
 
 ```scala
 def computation() =
@@ -128,6 +123,10 @@ def computation() =
 
 {{< slide transition="none" >}}
 
+# Killer feature: concorrenza strutturata
+
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+
 ```scala
 def computation() =
   ZIO.foreachPar(fileUrls) { fileUrl => 
@@ -143,26 +142,15 @@ def computation() =
 
 {{< slide transition="none" >}}
 
-```scala
-def computation() =
-  ZIO.foreachParN(fileUrls)(20) { fileUrl => 
-  //  ▔▔▔▔▔▔▔▔▔▔▔ Per limitare il parallelismo
-    val managed = Resource.managed(open(fileUrl))(close(_))
-    managed.use { data =>
-      breadthFirstSearch(data)
-    }
-  }
-```
+# Killer feature: concorrenza strutturata
 
----
-
-{{< slide transition="none" >}}
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
 
 ```scala
 val policy = Schedule.recurs(10) && Schedule.exponential(100.millis)
 
 def computation() =
-  ZIO.foreachParN(20)(fileUrls) { fileUrl => 
+  ZIO.foreachPar(fileUrls) { fileUrl => 
     val managed = Resource.managed(open(fileUrl))(close(_))
     val robust = managed.retry(policy)
     //           ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ Retry nell'acquisizione della risorsa
@@ -176,11 +164,15 @@ def computation() =
 
 {{< slide transition="none" >}}
 
+# Killer feature: concorrenza strutturata
+
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+
 ```scala
 val policy = Schedule.recurs(10) && Schedule.exponential(100.millis)
 
 def computation() =
-  ZIO.foreachParN(20)(fileUrls) { fileUrl => 
+  ZIO.foreachPar(fileUrls) { fileUrl => 
     val managed = Resource.managed(open(fileUrl))(close(_))
     val robust = managed.retry(policy).timeout(30.seconds)
     //                                 ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ Limite al tempo massimo
@@ -194,11 +186,15 @@ def computation() =
 
 {{< slide transition="none" >}}
 
+# Killer feature: concorrenza strutturata
+
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+
 ```scala
 val policy = Schedule.recurs(10) && Schedule.exponential(100.millis)
 
 def computation() =
-  ZIO.foreachParN(20)(fileUrls) { fileUrl => 
+  ZIO.foreachPar(fileUrls) { fileUrl => 
     val managed = Resource.managed(open(fileUrl))(close(_))
     val robust = managed.retry(policy).timeout(30.seconds)
     robust.use { data =>
@@ -212,11 +208,15 @@ def computation() =
 
 {{< slide transition="none" >}}
 
+# Killer feature: concorrenza strutturata
+
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+
 ```scala
 val policy = Schedule.recurs(10) && Schedule.exponential(100.millis)
 
 def computation() =
-  ZIO.foreachParN(20)(fileUrls) { fileUrl => 
+  ZIO.foreachPar(fileUrls) { fileUrl => 
     val managed = Resource.managed(open(fileUrl))(close(_))
     val robust = managed.retry(policy).timeout(30.seconds)
     robust.use { data =>
@@ -225,4 +225,9 @@ def computation() =
   }.timeout(10.minutes)
   //▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ Timeout all'intero processo
 ```
--->
+
+---
+
+## Conclusioni
+
+- conclusioni
