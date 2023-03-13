@@ -1,8 +1,26 @@
 +++
-title = "My presentation"
+title = "Gestione degli Effetti"
 outputs = ["Reveal"]
 +++
 
-# Hello world
+{{% slide id="titleSlide" %}}
 
-This is my first slide.
+# Gestione degli effetti in linguaggi di programmazione funzionale: tecniche di modellazione e interpretazione
+
+{{% multicol %}}
+
+{{% col %}}
+_Relatore_
+- Mirko Viroli
+
+_Correlatori_
+* Roberto Casadei
+* Gianluca Aguzzi
+{{% /col %}}
+
+{{% col %}}
+_Candidato_
+- Giacomo Cavalieri
+{{% /col %}}
+
+{{% /multicol %}}

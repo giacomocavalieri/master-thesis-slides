@@ -1,31 +1,33 @@
 @import "reveal-js/css/theme/template/mixins";
 @import "reveal-js/css/theme/template/settings";
 
-@import url('https://fonts.googleapis.com/css2?family=Lato');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans');
-
-// Monospace fonts
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono');
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 $backgroundColor: #fff;
+
+$pink: #ff82b2;
+$pink-highlighter: #ffb8eba6;
+$h1color: #2e80f2;
+$secondaryBackground: hsl(212, 15%, 97%);
+$codeColor: #5c5c5c;
 
 $mainColor: #000;
 $headingColor: #111;
 
 $mainFontSize: 2em;
-$mainFont: 'Lato', 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
-$headingFont: 'Lato', 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
+$mainFont: 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
 $headingLetterSpacing: normal;
-$headingFontWeight: 600;
-$linkColor: #0477b9;
-$linkColorHover: lighten($linkColor, 25%);
-$selectionBackgroundColor: lighten($linkColor, 25%);
+$headingFontWeight: 700;
+$linkColor: $pink;
+$linkColorHover: $pink-highlighter;
+$selectionBackgroundColor: $pink;
 
-$heading1Size: 2.5em;
-$heading2Size: 1.6em;
-$heading3Size: 1.3em;
-$heading4Size: 1.0em;
+$heading1Size: 3rem;
+$heading2Size: 2rem;
+$heading3Size: 2rem;
+$heading4Size: 1.3rem;
 
 @import "reveal-js/css/theme/template/theme";
 
@@ -45,12 +47,12 @@ section.has-light-background {
 .reveal strong,
 .reveal b {
 	font-weight: bold;
-	color: #9f0000
+	color: $pink
 }
 
 .reveal em {
 	font-style: italic;
-	color: #006900
+	color: $pink;
 }
 
 .multiCol {
@@ -110,7 +112,7 @@ section.has-light-background {
 	font-size: 1em;
 	color: black;
 	max-height: none;
-	font-family: 'Jetbrains Mono', 'Inconsolata', 'Source Code Pro', monospace;
+	font-family: 'Fira Code', 'Source Code Pro', monospace;
 	font-weight: normal;
 	margin: .1em;
 	// line-height: 1.2em;
@@ -127,10 +129,6 @@ section.has-light-background {
 	// box-sizing: border-box;
 }
 
-.hljs {
-	box-shadow: 0 0 3em 0.6em rgba(255, 255, 255, 0.2);
-}
-
 .mermaid svg {
 	max-width: 100% !important;
 	max-height: 43vh !important;
@@ -139,4 +137,505 @@ section.has-light-background {
 	transition: transform 0.3s ease;
 	border-width: 0.1em;
 	border-style: none;
+}
+
+.reveal {
+
+	section {
+		max-width: 90%;
+		margin-left: 5%;
+	}
+
+	p {
+		line-height: 1.3;
+		font-size: 1.7rem;
+		margin-left: 1em;
+		margin-right: 1em;
+	}
+
+	ul,
+	li {
+		line-height: 1.3;
+		font-size: 1.7rem;
+	}
+
+	h1 {
+		font-weight: 700;
+		font-size: 3rem;
+		color: $h1color;
+	}
+
+	h2 {
+		font-weight: 700;
+		font-size: 2.5rem;
+		color: $h1color;
+	}
+}
+
+.reveal {
+	pre {
+		box-shadow: none;
+		width: 85%;
+		margin-top: 3rem;
+
+		code {
+			border-radius: 1rem;
+			padding: 1.5rem;
+			font-size: 1rem;
+			font-family: 'Fira Code', monospace;
+			text-transform: none;
+			color: $codeColor;
+			background-color: $secondaryBackground;
+		}
+	}
+
+	p>code {
+		background-color: $secondaryBackground;
+		padding: 0.4rem;
+		border-radius: 0.6rem;
+		color: $codeColor;
+	}
+}
+
+.multiCol {
+	pre.chroma {
+		width: 100%;
+	}
+}
+
+#titleSlide {
+	.multiCol {
+		margin-top: 5rem;
+		font-size: 1.3rem !important;
+
+		.col {
+			pre.chroma {
+				width: 100% !important;
+
+				code {
+					width: 100%;
+				}
+			}
+		}
+
+		em {
+			font-size: 1.3rem !important;
+		}
+
+		p {
+			margin: 0;
+			margin-top: 1rem;
+			padding: 0;
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				font-size: 1.3rem !important;
+			}
+		}
+
+		.col:nth-child(2) {
+			text-align: right;
+		}
+	}
+}
+
+.outer-circle {
+	font-size: 1.3rem;
+
+	margin-left: 37.5%;
+	width: 25%;
+	margin-top: 3rem;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	padding: 1rem;
+	box-sizing: border-box;
+
+	background-color: $pink-highlighter;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	.inner-circle {
+		width: 70%;
+		aspect-ratio: 1 / 1;
+		border-radius: 50%;
+
+		background-color: $h1color;
+		color: white;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		margin-top: 1rem;
+	}
+}
+
+
+.reveal blockquote {
+	display: block;
+	position: relative;
+	width: 82%;
+	margin: 1rem auto;
+	padding: 1rem;
+	font-style: italic;
+	background: $secondaryBackground;
+	border-radius: 1rem;
+	box-shadow: none;
+
+	p:before {
+		font-family: Georgia, 'Times New Roman', Times, serif;
+		display: block;
+		content: "\201C";
+		font-size: 7rem;
+		position: absolute;
+		left: 1rem;
+		top: 0px;
+		color: $codeColor;
+	}
+
+	p {
+		color: $codeColor !important;
+		margin-left: 3rem;
+		margin-right: 2rem;
+
+		em {
+			display: block;
+			text-align: right;
+			color: $codeColor !important;
+			font-weight: 300;
+			font-size: 1.3rem;
+			margin-top: 1rem;
+		}
+	}
+}
+
+
+/* CHROMA CODE HIGHLIGHTING */
+
+/* Error */
+.chroma .err {
+	color: #960050;
+	background-color: #1e0010
+}
+
+/* LineTableTD */
+.chroma .lntd {
+	vertical-align: top;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+/* LineTable */
+.chroma .lntable {
+	border-spacing: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+/* LineHighlight */
+.chroma .hl {
+	background-color: #ffffcc
+}
+
+/* LineNumbersTable */
+.chroma .lnt {
+	white-space: pre;
+	user-select: none;
+	margin-right: 0.4em;
+	padding: 0 0.4em 0 0.4em;
+	color: #7f7f7f
+}
+
+/* LineNumbers */
+.chroma .ln {
+	white-space: pre;
+	user-select: none;
+	margin-right: 0.4em;
+	padding: 0 0.4em 0 0.4em;
+	color: #7f7f7f
+}
+
+/* Line */
+.chroma .line {
+	display: flex;
+}
+
+/* Keyword */
+.chroma .k {
+	color: #a625a4
+}
+
+/* KeywordConstant */
+.chroma .kc {
+	color: #a625a4
+}
+
+/* KeywordDeclaration */
+.chroma .kd {
+	color: #a625a4
+}
+
+/* KeywordNamespace */
+.chroma .kn {
+	color: #f92672
+}
+
+/* KeywordPseudo */
+.chroma .kp {
+	color: #a625a4
+}
+
+/* KeywordReserved */
+.chroma .kr {
+	color: #a625a4
+}
+
+/* KeywordType */
+.chroma .kt {
+	color: #e75545
+}
+
+/* NameAttribute */
+.chroma .na {
+	color: $codeColor;
+	font-weight: bold;
+}
+
+/* NameClass */
+.chroma .nc {
+	color: $codeColor;
+	font-weight: bold;
+}
+
+/* NameConstant */
+.chroma .no {
+	color: #66d9ef
+}
+
+/* NameDecorator */
+.chroma .nd {
+	color: $codeColor;
+	font-weight: bold;
+}
+
+/* NameException */
+.chroma .ne {
+	color: $codeColor;
+	font-weight: bold;
+}
+
+/* NameFunction */
+.chroma .nf {
+	color: $codeColor;
+	font-weight: bold;
+}
+
+/* NameOther */
+.chroma .nx {
+	color: $codeColor;
+	font-weight: bold;
+}
+
+/* NameTag */
+.chroma .nt {
+	color: $codeColor;
+}
+
+/* Literal */
+.chroma .l {
+	color: #ae81ff
+}
+
+/* LiteralDate */
+.chroma .ld {
+	color: #4ea24c
+}
+
+/* LiteralString */
+.chroma .s {
+	color: #4ea24c
+}
+
+/* LiteralStringAffix */
+.chroma .sa {
+	color: #4ea24c
+}
+
+/* LiteralStringBacktick */
+.chroma .sb {
+	color: #4ea24c
+}
+
+/* LiteralStringChar */
+.chroma .sc {
+	color: #4ea24c
+}
+
+/* LiteralStringDelimiter */
+.chroma .dl {
+	color: #4ea24c
+}
+
+/* LiteralStringDoc */
+.chroma .sd {
+	color: #4ea24c
+}
+
+/* LiteralStringDouble */
+.chroma .s2 {
+	color: #4ea24c
+}
+
+/* LiteralStringEscape */
+.chroma .se {
+	color: #ae81ff
+}
+
+/* LiteralStringHeredoc */
+.chroma .sh {
+	color: #4ea24c
+}
+
+/* LiteralStringInterpol */
+.chroma .si {
+	color: #4ea24c
+}
+
+/* LiteralStringOther */
+.chroma .sx {
+	color: #4ea24c
+}
+
+/* LiteralStringRegex */
+.chroma .sr {
+	color: #4ea24c
+}
+
+/* LiteralStringSingle */
+.chroma .s1 {
+	color: #4ea24c
+}
+
+/* LiteralStringSymbol */
+.chroma .ss {
+	color: #4ea24c
+}
+
+/* LiteralNumber */
+.chroma .m {
+	color: #986800
+}
+
+/* LiteralNumberBin */
+.chroma .mb {
+	color: #986800
+}
+
+/* LiteralNumberFloat */
+.chroma .mf {
+	color: #986800
+}
+
+/* LiteralNumberHex */
+.chroma .mh {
+	color: #986800
+}
+
+/* LiteralNumberInteger */
+.chroma .mi {
+	color: #986800
+}
+
+/* LiteralNumberIntegerLong */
+.chroma .il {
+	color: #986800
+}
+
+/* LiteralNumberOct */
+.chroma .mo {
+	color: #986800
+}
+
+/* Operator */
+.chroma .o {
+	color: $codeColor;
+}
+
+/* OperatorWord */
+.chroma .ow {
+	color: $codeColor;
+}
+
+.chroma .n {
+	color: $h1color;
+}
+
+/* Comment */
+.chroma .c {
+	color: #989898
+}
+
+/* CommentHashbang */
+.chroma .ch {
+	color: #989898
+}
+
+/* CommentMultiline */
+.chroma .cm {
+	color: #989898
+}
+
+/* CommentSingle */
+.chroma .c1 {
+	color: #989898
+}
+
+/* CommentSpecial */
+.chroma .cs {
+	color: #989898
+}
+
+/* CommentPreproc */
+.chroma .cp {
+	color: #989898
+}
+
+/* CommentPreprocFile */
+.chroma .cpf {
+	color: #989898
+}
+
+/* GenericDeleted */
+.chroma .gd {
+	color: #f92672
+}
+
+/* GenericEmph */
+.chroma .ge {
+	font-style: italic
+}
+
+/* GenericInserted */
+.chroma .gi {
+	color: #a6e22e
+}
+
+/* GenericStrong */
+.chroma .gs {
+	font-weight: bold
+}
+
+/* GenericSubheading */
+.chroma .gu {
+	color: #989898
 }
