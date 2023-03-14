@@ -2,6 +2,15 @@
 weight = 1
 +++
 
+## Outline della tesi
+
+- Introduzione graduale e tramite esempi del concetto di _monade_ e _stack di monadi_
+- Analisi dell'approccio _Monad Transformer Library (MTL)_ come meccanismo per tracciare gli effetti
+- Analisi dell'approccio delle _free monad_ come meccanismo per tracciare gli effetti
+- Introduzione dell'approccio degli _effetti algebrici_ e vantaggi rispetto all'approccio monadico
+
+---
+
 ## Side effect nei linguaggi di programmazione
 
 > If a program has no __side effects__ there’s no point in running it.
@@ -88,7 +97,7 @@ def f[M[_]: FileSystem: Console: Monad](x: Double): M[Double] = for
 
 ---
 
-# Killer feature: concorrenza strutturata
+## Killer feature: concorrenza strutturata
 
 Questo approccio di modellazione dei side effect permette di definire DSL per descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
@@ -104,7 +113,7 @@ def computation() =
 
 {{< slide transition="none" >}}
 
-# Killer feature: concorrenza strutturata
+## Killer feature: concorrenza strutturata
 
 Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
@@ -123,7 +132,7 @@ def computation() =
 
 {{< slide transition="none" >}}
 
-# Killer feature: concorrenza strutturata
+## Killer feature: concorrenza strutturata
 
 Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
@@ -142,7 +151,7 @@ def computation() =
 
 {{< slide transition="none" >}}
 
-# Killer feature: concorrenza strutturata
+## Killer feature: concorrenza strutturata
 
 Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
@@ -164,7 +173,7 @@ def computation() =
 
 {{< slide transition="none" >}}
 
-# Killer feature: concorrenza strutturata
+## Killer feature: concorrenza strutturata
 
 Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
@@ -186,7 +195,7 @@ def computation() =
 
 {{< slide transition="none" >}}
 
-# Killer feature: concorrenza strutturata
+## Killer feature: concorrenza strutturata
 
 Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
@@ -208,7 +217,7 @@ def computation() =
 
 {{< slide transition="none" >}}
 
-# Killer feature: concorrenza strutturata
+## Killer feature: concorrenza strutturata
 
 Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
