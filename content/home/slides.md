@@ -70,7 +70,7 @@ L'idea alla base di questi approcci consiste nel trasformare il programma in una
 
 ---
 
-Una funzione realizzata seguendo questo approccio non "mente" sul proprio comportamento: specifica in maniera astratta il __contesto computazionale__ all'interno del quale può aver luogo e quali side effect possono verificarsi
+Una funzione realizzata seguendo questo approccio non "mente" sul proprio comportamento: specifica in maniera astratta il _contesto computazionale_ all'interno del quale può aver luogo e quali side effect possono verificarsi
 
 ```scala
 // f : Double => Double
@@ -90,7 +90,7 @@ def f[M[_]: FileSystem: Console: Monad](x: Double): M[Double] = for
 
 # Killer feature: concorrenza strutturata
 
-Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+Questo approccio di modellazione dei side effect permette di definire DSL per descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
 ```scala
 def computation() =
@@ -106,7 +106,7 @@ def computation() =
 
 # Killer feature: concorrenza strutturata
 
-Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
 ```scala
 def computation() =
@@ -125,7 +125,7 @@ def computation() =
 
 # Killer feature: concorrenza strutturata
 
-Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
 ```scala
 def computation() =
@@ -144,7 +144,7 @@ def computation() =
 
 # Killer feature: concorrenza strutturata
 
-Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
 ```scala
 val policy = Schedule.recurs(10) && Schedule.exponential(100.millis)
@@ -166,7 +166,7 @@ def computation() =
 
 # Killer feature: concorrenza strutturata
 
-Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
 ```scala
 val policy = Schedule.recurs(10) && Schedule.exponential(100.millis)
@@ -188,7 +188,7 @@ def computation() =
 
 # Killer feature: concorrenza strutturata
 
-Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
 ```scala
 val policy = Schedule.recurs(10) && Schedule.exponential(100.millis)
@@ -210,7 +210,7 @@ def computation() =
 
 # Killer feature: concorrenza strutturata
 
-Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera concisa, dichiarativa e modulare.
+Questo approccio di modellazione dei side effect permette di descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
 
 ```scala
 val policy = Schedule.recurs(10) && Schedule.exponential(100.millis)
@@ -222,12 +222,14 @@ def computation() =
     robust.use { data =>
       breadthFirstSearch(data).race(depthFirstSearch(data))
     }
-  }.timeout(10.minutes)
-  //▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ Timeout all'intero processo
+  }.timeout(5.minutes)
+  //▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ Timeout all'intero processo
 ```
 
 ---
 
 ## Conclusioni
 
-- conclusioni
+- Rendere espliciti i side effect delle funzioni ne _rende esplicito il comportamento,_ semplificando la possibilità di ragionare sulle sue proprietà e rifattorizzare il codice
+- Come nel caso della concorrenza strutturata la gestione esplicita degli effetti permette di _definire dei DSL ad hoc per il dominio affrontato_
+- Gli effetti possono quindi essere adottati come _strumento di design_ e organizzazione del software in un paradigma "orientato agli effetti"
