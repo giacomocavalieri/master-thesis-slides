@@ -159,6 +159,10 @@ section.has-light-background {
 		font-size: 1.7rem;
 	}
 
+	ul {
+		margin-bottom: 1.5rem;
+	}
+
 	h1 {
 		font-weight: 700;
 		font-size: 3rem;
@@ -173,10 +177,14 @@ section.has-light-background {
 }
 
 .reveal {
+	p+.highlight {
+		margin-top: 3rem;
+	}
+
 	pre {
 		box-shadow: none;
 		width: 85%;
-		margin-top: 3rem;
+		//margin-top: 3rem;
 
 		code {
 			border-radius: 1rem;

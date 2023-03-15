@@ -14,7 +14,7 @@ weight = 1
 ## Side effect nei linguaggi di programmazione
 
 > If a program has no __side effects__ there’s no point in running it.
-> You have a black box, you press go and it gets hot but there’s no output
+> You have a black box, you press go and it gets hot but there’s no output!
 > _Simon Peyton-Jones_
 
 ```scala
@@ -305,6 +305,25 @@ def computation() =
   //▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ Timeout all'intero processo
 ```
 -->
+
+---
+
+## Adozione
+
+- L'approccio monadico rappresenta lo _standard de facto_ in linguaggi funzionali puri come Haskell
+- In Scala sono state sviluppate _librerie che implementano l'approccio monadico_: ZIO, Cats Effect, etc.
+- L'approccio degli effetti algebrici sta ricevendo crescente attenzione
+
+> The WasmFX project extends WebAssembly with effect handlers as a unifying mechanism to enable efficient compilation of control idioms, such as __async/await, generators/iterators, first-class continuations__, etc.
+> _WasmFX Overview_
+
+---
+
+> We’ve managed to achieve __higher decoupling__ and independence for our various services and dev teams that have very different use-cases while maintaining a single uniform infrastructure in place. Our Kafka infrastructure is called Greyhound and was recently __completely re-written using ZIO__.
+> _Natan Silnitsky - Backend Infra Developer, Wix_
+
+> Free Monads are fast, reliable, simple and expressive. [...] This technology __helped the company to grow up__ [...] and helped us to easily reason about the domain, the logic, the business goals and requirements.
+> _Alexander Granin - Senior Software Architect, Juspay_
 
 ---
 
