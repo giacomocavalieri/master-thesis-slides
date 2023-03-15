@@ -87,7 +87,7 @@ Una funzione realizzata seguendo questo approccio non "mente" sul proprio compor
 def appendToFile[Effs[_]: FileSystem: Logging](file: String, line: String)
   //            ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ I possibili side effect
     : Program[Effs, Unit] =
-  //  ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ Restituisce la descrizione di un programma                          
+  //  ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ Restituisce la descrizione di un programma
   for
     _ <- Logging.log(LogLevel.Info, f"Appending $line to $file")
     _ <- FileSystem.use(file)(_.write(f"$line\n"))
