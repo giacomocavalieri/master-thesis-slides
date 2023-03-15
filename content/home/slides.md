@@ -19,13 +19,13 @@ weight = 1
 
 ```scala
 def appendToFile(file: String, line: String): Unit =
-  println(f"Appending $line to $file")
+  log(LogLevel.Info, f"Appending $line to $file")
   Using(FileWriter(file, true))(_.write(f"$line\n"))
 ```
 
 ---
 
-> __Side effects are lies.__ Your function promises to do one thing, but it also does other hidden things.
+> __Side effects are lies__. Your function promises to do one thing, but it also does other hidden things.
 > [...] They are mistruths that often result in strange temporal couplings and order dependencies.
 > _Robert Cecil Martin_
 
@@ -69,7 +69,7 @@ g(x) + g(x) === 2 * g(x)
 
 ---
 
-## Modellazione esplicita dei side effect
+## Modellazione esplicita dei side effect tramite monadi
 
 L'idea alla base di questi approcci consiste nel trasformare il programma in una struttura dati immutabile che _descrive_ i side effect che possono verificarsi:
 
@@ -79,27 +79,97 @@ L'idea alla base di questi approcci consiste nel trasformare il programma in una
 
 ---
 
-Una funzione realizzata seguendo questo approccio non "mente" sul proprio comportamento: specifica in maniera astratta il _contesto computazionale_ all'interno del quale può aver luogo e quali side effect possono verificarsi
+## MTL e Free Monad
+
+Una funzione realizzata seguendo questo approccio non "mente" sul proprio comportamento: specifica in maniera astratta i side effect che possono aver luogo
 
 ```scala
-// f : Double => Double
-def f(x: Double): Double =
-  appendToFile("path/to/file", "Effect!")
-  Math.cos(x)
-```
-
-```scala
-// f : Double => M[Double]
-def f[M[_]: FileSystem: Console: Monad](x: Double): M[Double] = for
-    _ <- FileSystem.appendToFile("path/to/file", "Effect!")
-  yield Math.cos(x)
+def appendToFile[Effs[_]: FileSystem: Logging](file: String, line: String)
+  //            ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ I possibili side effect
+    : Program[Effs, Unit] =
+  //  ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ Restituisce la descrizione di un programma                          
+  for
+    _ <- Logging.log(LogLevel.Info, f"Appending $line to $file")
+    _ <- FileSystem.use(file)(_.write(f"$line\n"))
+  yield ()
 ```
 
 ---
 
+Vengono disaccoppiati la _descrizione_ del programma e la sua _interpretazione_: la descrizione specifica in maniera astratta _quali_ effetti devono aver luogo e in un secondo momento è possibile stabilie _come_ dovranno essere interpretati
+
+```scala
+def interpret() = 
+  program.nextInstruction match
+    Return(result) => result
+    SideEffect(effect, continuation) => effect match
+      Log(logLevel, message) => 
+        println(f"[$logLevel] $message")
+        continuation(()).interpret()
+      OpenFile(file, mode)   => ...
+      CloseFile(fileHandle)  => ...
+```
+
+---
+
+## Effetti algebrici
+
+L'approccio basato su effetti algebrici ha l'obiettivo di _tracciare esplicitamente e in maniera automatica_ gli effetti, senza dover ricorrere all'utilizzo di monadi
+
+```kotlin
+// appendToFile : (string, string) -> <logging, fileSystem> ()
+fun appendToFile(file, line)
+  log(LogLevel.Info, "Appending $line to $file")
+  using(file) { fn(handle) handle.write(content) }
+```
+
+---
+
+
+Gli approcci basati su effetti algebrici presentano diversi vantaggi rispetto alle controparti monadiche
+
+- Il codice _appare imperativo_ e non richiede complesse annotazioni di tipo
+- _Inferenza automatica_ dei tipi (ed effetti!)
+- _Minor carico cognitivo_ per il programmatore
+
+---
+
+```scala
+// appendToFile : (String, String) => Unit
+def appendToFile(file: String, line: String): Unit =
+  log(LogLevel.Info, f"Appending $line to $file")
+  Using(FileWriter(file, true))(_.write(f"$line\n"))
+```
+
+{{% fragment %}}
+```scala
+// appendToFile : (String, String) => Program[Effs, Unit]
+def appendToFile[Effs[_]: FileSystem: Logging](file: String, line: String)
+    : Program[Effs, Unit] =                    
+  for
+    _ <- Logging.log(LogLevel.Info, f"Appending $line to $file")
+    _ <- FileSystem.use(file)(_.write(f"$line\n"))
+  yield ()
+```
+{{% /fragment %}}
+
+{{% fragment %}}
+```kotlin
+// appendToFile : (string, string) -> <logging, fileSystem> ()
+fun appendToFile(file, line)
+  log(LogLevel.Info, "Appending $line to $file")
+  using(file) { fn(handle) handle.write(content) }
+```
+{{% /fragment %}}
+
+---
+
+<!--
+---
+
 ## Killer feature: concorrenza strutturata
 
-Questo approccio di modellazione dei side effect permette di definire DSL per descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare._
+Questo approccio di modellazione dei side effect permette di definire DSL per descrivere complessi meccanismi di concorrenza in maniera _concisa, dichiarativa e modulare_.
 
 ```scala
 def computation() =
@@ -234,11 +304,12 @@ def computation() =
   }.timeout(5.minutes)
   //▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ Timeout all'intero processo
 ```
+-->
 
 ---
 
 ## Conclusioni
 
-- Rendere espliciti i side effect delle funzioni ne _rende esplicito il comportamento,_ semplificando la possibilità di ragionare sulle sue proprietà e rifattorizzare il codice
-- Come nel caso della concorrenza strutturata la gestione esplicita degli effetti permette di _definire dei DSL ad hoc per il dominio affrontato_
-- Gli effetti possono quindi essere adottati come _strumento di design_ e organizzazione del software in un paradigma "orientato agli effetti"
+- Tracciare i side effect delle funzioni ne _rende esplicito il comportamento_, semplificando la possibilità di ragionare sulle loro proprietà e rifattorizzare il codice
+- Gli effetti possono essere sfruttati come _strumento di design_ e organizzazione del software in un paradigma "orientato agli effetti"
+- L'approccio basato su effetti algebrici rappresenta una promettente _sintesi fra la semplicità di scrittura_ del codice imperativo _e i vantaggi della gestione esplicita degli effetti_
