@@ -10,16 +10,16 @@ outputs = ["Reveal"]
 {{% multicol %}}
 
 {{% col %}}
-_Relatore_
+__Relatore__
 - Mirko Viroli
 
-_Correlatori_
+__Correlatori__
 * Roberto Casadei
 * Gianluca Aguzzi
 {{% /col %}}
 
 {{% col %}}
-_Candidato_
+__Candidato__
 - Giacomo Cavalieri
 {{% /col %}}
 

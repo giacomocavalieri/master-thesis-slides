@@ -4,10 +4,10 @@ weight = 1
 
 ## Outline della tesi
 
-- Introduzione graduale e tramite esempi del concetto di _monade_ e _stack di monadi_
-- Analisi dell'approccio _Monad Transformer Library (MTL)_ come meccanismo per tracciare gli effetti
-- Analisi dell'approccio delle _free monad_ come meccanismo per tracciare gli effetti
-- Introduzione dell'approccio degli _effetti algebrici_ e vantaggi rispetto all'approccio monadico
+- Introduzione graduale e tramite esempi del concetto di __monade__ e __stack di monadi__
+- Analisi dell'approccio __Monad Transformer Library (MTL)__ come meccanismo per tracciare gli effetti
+- Analisi dell'approccio delle __free monad__ come meccanismo per tracciare gli effetti
+- Introduzione dell'approccio degli __effetti algebrici__ e vantaggi rispetto all'approccio monadico
 
 ---
 
@@ -63,19 +63,19 @@ g(x) + g(x) === 2 * g(x)
 
 ## Obiettivi della tesi
 
-- Fornire una visione d'insieme sulle principali tecniche ad oggi adottate per modellare in maniera esplicita i side effect delle funzioni: _Monad Transformer Library (MTL)_ e _free monad_
-- Analizzare il nuovo approccio emergente degli _effetti algebrici_
-- Mostrare l'efficacia di questi approcci come strumenti di design in un paradigma _"orientato agli effetti"_
+- Fornire una visione d'insieme sulle principali tecniche ad oggi adottate per modellare in maniera esplicita i side effect delle funzioni: __Monad Transformer Library (MTL)__ e __free monad__
+- Analizzare il nuovo approccio emergente degli __effetti algebrici__
+- Mostrare l'efficacia di questi approcci come strumenti di design in un paradigma __"orientato agli effetti"__
 
 ---
 
 ## Modellazione esplicita dei side effect tramite monadi
 
-L'idea alla base di questi approcci consiste nel trasformare il programma in una struttura dati immutabile che _descrive_ i side effect che possono verificarsi:
+L'idea alla base di questi approcci consiste nel trasformare il programma in una struttura dati immutabile che __descrive__ i side effect che possono verificarsi:
 
-- Un programma diventa _un'entità di prima classe_
-- I programmi possono essere descritti e composti in maniera _modulare_
-- È possibile _modificare la semantica_ di un programma interpretandolo diversamente
+- Un programma diventa __un'entità di prima classe__
+- I programmi possono essere descritti e composti in maniera __modulare__
+- È possibile __modificare la semantica__ di un programma interpretandolo diversamente
 
 ---
 
@@ -96,7 +96,7 @@ def appendToFile[Effs[_]: FileSystem: Logging](file: String, line: String)
 
 ---
 
-Vengono disaccoppiati la _descrizione_ del programma e la sua _interpretazione_: la descrizione specifica in maniera astratta _quali_ effetti devono aver luogo e in un secondo momento è possibile stabilie _come_ dovranno essere interpretati
+Vengono disaccoppiati la __descrizione__ del programma e la sua __interpretazione__: la descrizione specifica in maniera astratta __quali__ effetti devono aver luogo e in un secondo momento è possibile stabilie __come__ dovranno essere interpretati
 
 ```scala
 def interpret() = 
@@ -114,7 +114,7 @@ def interpret() =
 
 ## Effetti algebrici
 
-L'approccio basato su effetti algebrici ha l'obiettivo di _tracciare esplicitamente e in maniera automatica_ gli effetti, senza dover ricorrere all'utilizzo di monadi
+L'approccio basato su effetti algebrici ha l'obiettivo di __tracciare esplicitamente e in maniera automatica__ gli effetti, senza dover ricorrere all'utilizzo di monadi
 
 ```kotlin
 // appendToFile : (string, string) -> <logging, fileSystem> ()
@@ -128,9 +128,9 @@ fun appendToFile(file, line)
 
 Gli approcci basati su effetti algebrici presentano diversi vantaggi rispetto alle controparti monadiche
 
-- Il codice _appare imperativo_ e non richiede complesse annotazioni di tipo
-- _Inferenza automatica_ dei tipi (ed effetti!)
-- _Minor carico cognitivo_ per il programmatore
+- Il codice __appare imperativo__ e non richiede complesse annotazioni di tipo
+- __Inferenza automatica__ dei tipi (ed effetti!)
+- __Minor carico cognitivo__ per il programmatore
 
 ---
 
@@ -310,8 +310,8 @@ def computation() =
 
 ## Adozione
 
-- L'approccio monadico rappresenta lo _standard de facto_ in linguaggi funzionali puri come Haskell
-- In Scala sono state sviluppate _librerie che implementano l'approccio monadico_: ZIO, Cats Effect, etc.
+- L'approccio monadico rappresenta lo __standard de facto__ in linguaggi funzionali puri come Haskell
+- In Scala sono state sviluppate __librerie che implementano l'approccio monadico__: ZIO, Cats Effect, etc.
 - L'approccio degli effetti algebrici sta ricevendo crescente attenzione
 
 > The WasmFX project extends WebAssembly with effect handlers as a unifying mechanism to enable efficient compilation of control idioms, such as __async/await, generators/iterators, first-class continuations__, etc.
@@ -329,6 +329,6 @@ def computation() =
 
 ## Conclusioni
 
-- Tracciare i side effect delle funzioni ne _rende esplicito il comportamento_, semplificando la possibilità di ragionare sulle loro proprietà e rifattorizzare il codice
-- Gli effetti possono essere sfruttati come _strumento di design_ e organizzazione del software in un paradigma "orientato agli effetti"
-- L'approccio basato su effetti algebrici rappresenta una promettente _sintesi fra la semplicità di scrittura_ del codice imperativo _e i vantaggi della gestione esplicita degli effetti_
+- Tracciare i side effect delle funzioni ne __rende esplicito il comportamento__, semplificando la possibilità di ragionare sulle loro proprietà e rifattorizzare il codice
+- Gli effetti possono essere sfruttati come __strumento di design__ e organizzazione del software in un paradigma "orientato agli effetti"
+- L'approccio basato su effetti algebrici rappresenta una promettente __sintesi fra la semplicità di scrittura__ del codice imperativo __e i vantaggi della gestione esplicita degli effetti__
